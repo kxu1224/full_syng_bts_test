@@ -6,7 +6,7 @@ Methods
 PilotExperiment
 ------------
 
-.. autofunction:: testing.python.Temp.PilotExperiment
+.. autofunction:: syng_bts_imports.python.Experiments_new.PilotExperiment
 
 For example:
 
