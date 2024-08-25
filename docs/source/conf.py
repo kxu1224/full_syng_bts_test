@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = 'Syng-BTS'
+project = 'SyNG-BTS'
 copyright = '2024, Xu'
 author = 'Xu'
 
