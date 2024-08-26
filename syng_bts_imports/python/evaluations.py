@@ -4,6 +4,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from umap import UMAP
+import os
 
 import importlib.resources as pkg_resources
 
@@ -97,17 +98,18 @@ def evaluation(generated_input: str = "BRCASubtypeSel_train.csv",
         the real original dataset; a default set is also provided as an example
     
     """
-
-    if generated_input == 'BRCASubtypeSel_train_epoch285_CVAE1-20_generated.csv':
-        with pkg_resources.open_text('syng_bts_imports.Case', 'BRCASubtypeSel_train_epoch285_CVAE1-20_generated.csv') as data_file:
+    train_path = "../Case/BRCASubtype/" + generated_input
+    if generated_input == 'BRCASubtypeSel_train.csv' and not os.path.exists(path=train_path):
+        with pkg_resources.open_text('syng_bts_imports.Case', 'BRCASubtypeSel_train.csv') as data_file:
             generated = pd.read_csv(data_file)
     else:
-        generated = pd.read_csv(generated_input, header = 0)
-    if real_input == 'BRCASubtypeSel_test.csv':
+        generated = pd.read_csv(train_path, header = 0)
+    test_path = "../Case/BRCASubtype/" + real_input
+    if real_input == 'BRCASubtypeSel_test.csv' and not os.path.exists(path=test_path):
         with pkg_resources.open_text('syng_bts_imports.Case', 'BRCASubtypeSel_test.csv') as data_file:
             real = pd.read_csv(data_file)
     else:
-        real = pd.read_csv(real_input, header = 0)
+        real = pd.read_csv(test_path, header = 0)
 
     # Define the default group level
     level0 = real['groups'].iloc[0]
