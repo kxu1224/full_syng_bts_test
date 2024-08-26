@@ -9,9 +9,17 @@ import importlib.resources as pkg_resources
 
 
 def heatmap_eval(dat_generated, dat_real):
-    # This function creates a heatmap visualization comparing the generated data and the real data
-    # dat_generated: the data generated from ApplyExperiment
-    # dat_real: the original copy of the data
+    r"""
+    This function creates a heatmap visualization comparing the generated data and the real data
+
+    Parameters
+    -----------
+    dat_generated : pd.DataFrame
+            the data generated from ApplyExperiment
+    dat_real: pd.DataFrame
+            the original copy of the data
+    
+    """
     fig, axs = plt.subplots(ncols=2, figsize=(12, 6),
                             gridspec_kw=dict(width_ratios=[dat_generated.shape[1], dat_real.shape[1]]))
 
@@ -29,9 +37,23 @@ def heatmap_eval(dat_generated, dat_real):
 
 
 def UMAP_eval(dat_generated, dat_real, groups_generated, groups_real, legend_pos="top"):
-    # This function creates a UMAP visualization comparing the generated data and the real data
-    # dat_generated: the data generated from ApplyExperiment
-    # dat_real: the original copy of the data
+    r"""
+    This function creates a UMAP visualization comparing the generated data and the real data
+
+    Parameters
+    -----------
+    dat_generated : pd.DataFrame
+            the data generated from ApplyExperiment
+    dat_real: pd.DataFrame
+            the original copy of the data
+    groups_generated : pd.Series
+            the groups generated
+    groups_real : pd.Series
+            the real groups
+    legend_pos : string
+            legend location
+    
+    """
     
     # Filter out features with zero variance in generated data
     non_zero_var_cols = dat_generated.var(axis=0) != 0
@@ -63,12 +85,18 @@ def UMAP_eval(dat_generated, dat_real, groups_generated, groups_real, legend_pos
     plt.title('UMAP Projection of Real and Generated Data')
     plt.show()
 
-def evaluation(generated_input: str = "BRCASubtypeSel_train_epoch285_CVAE1-20_generated.csv", 
+def evaluation(generated_input: str = "BRCASubtypeSel_train.csv", 
                real_input: str = "BRCASubtypeSel_test.csv"):
-    # This method provides preprocessing of the input data prior to creating the visualizations.
-    # This can also be used as inspiration for other ways of using the above evaluation methods.
-    # generated_input: the generated dataset; a default set is also provided as an example
-    # real_input: the real original dataset; a default set is also provided as an example
+    r"""
+    This method provides preprocessing of the input data prior to creating the visualizations.
+    This can also be used as inspiration for other ways of using the above evaluation methods.
+
+    generated_input : string
+        the generated dataset; a default set is also provided as an example
+    real_input : string
+        the real original dataset; a default set is also provided as an example
+    
+    """
 
     if generated_input == 'BRCASubtypeSel_train_epoch285_CVAE1-20_generated.csv':
         with pkg_resources.open_text('syng_bts_imports.Case', 'BRCASubtypeSel_train_epoch285_CVAE1-20_generated.csv') as data_file:

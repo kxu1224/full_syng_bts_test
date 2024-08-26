@@ -6,14 +6,14 @@ Evaluations
 Heatmap  
 ------------
 
-.. autofunction:: testing.python.Temp.heatmap_eval
+.. autofunction:: syng_bts_imports.python.evaluations.heatmap_eval
 
 .. _umap:
 
 UMAP
 ----------------
 
-.. autofunction:: testing.python.Temp.UMAP_eval
+.. autofunction:: syng_bts_imports.python.evaluations.UMAP_eval
 
 
 .. _evaluation:
@@ -21,4 +21,4 @@ UMAP
 Evaluation
 ----------------
 
-.. autofunction:: testing.python.Temp.evaluation
+.. autofunction:: syng_bts_imports.python.evaluations.evaluation

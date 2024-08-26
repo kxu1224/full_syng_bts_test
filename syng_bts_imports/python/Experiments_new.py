@@ -591,7 +591,7 @@ def ApplyExperiment(path, dataname, apply_log, new_size, model, batch_frac, lear
         print("wait for other models")
 
 #%% Define transfer learing 
-def Transfer(pilot_size, fromname, toname, fromsize, model, new_size=500, apply_log=True, epoch=None, batch_frac=0.1, learning_rate=0.0005, off_aug=None):
+def TransferExperiment(pilot_size, fromname, toname, fromsize, model, new_size=500, apply_log=True, epoch=None, batch_frac=0.1, learning_rate=0.0005, off_aug=None):
     """
     This function run transfer learning using VAE or CVAE, or GAN, WGAN, WGANGP, MAF, GLOW, RealNVP 
     given fromdata, todata, model, batch_size, learning_rate, epoch, off_aug and pre_model
