@@ -18,9 +18,9 @@ setup(
     package_data={
         'syng_bts_imports.RealData': ['SKCMPositive_4.csv'],
         'syng_bts_imports.Case.BRCASubtype': ['BRCASubtypeSel.csv'],
-        'syng_bts_imports.Case': ['BRCASubtypeSel_test.csv'],
-        'syng_bts_imports.Case': ['BRCASubtypeSel_train_epoch285_CVAE1-20_generated.csv'],
-        'syng_bts_imports.Case': ['BRCASubtypeSel_train.csv'],
+        'syng_bts_imports.Case.BRCASubtype': ['BRCASubtypeSel_test.csv'],
+        'syng_bts_imports.Case.BRCASubtype': ['BRCASubtypeSel_train_epoch285_CVAE1-20_generated.csv'],
+        'syng_bts_imports.Case.BRCASubtype': ['BRCASubtypeSel_train.csv'],
     },
     install_requires = install_requires,
     python_requires='>=3.6',
