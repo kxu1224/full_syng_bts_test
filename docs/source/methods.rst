@@ -21,7 +21,7 @@ For example:
 ApplyExperiment
 ----------------
 
-.. autofunction:: testing.python.Temp.ApplyExperiment
+.. autofunction:: syng_bts_imports.python.Experiments_new.ApplyExperiment
 
 For example:
 
@@ -38,7 +38,7 @@ For example:
 TransferExperiment
 ----------------
 
-.. autofunction:: testing.python.Temp.TransferExperiment
+.. autofunction:: syng_bts_imports.python.Experiments_new.TransferExperiment
 
 For example:
 
