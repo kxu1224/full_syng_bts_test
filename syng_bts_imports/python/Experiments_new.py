@@ -324,9 +324,11 @@ def ApplyExperiment(path, dataname, apply_log, new_size, model, batch_frac, lear
     path : string
                               path for reading real data and saving new data
     dataname : string
-                    pure data name without .csv. Eg: SKCMPositive_3
+                    pure data name without .csv. Eg: BRCASubtypeSel_train
     apply_log : boolean
                       logical whether apply log transformation before training
+    new_size : int
+             the number of generated samples. If CVAE is called, the group sample size will be new_size/2.
     model : string
                               name of the model to be trained
     batch_frac : float
@@ -334,9 +336,9 @@ def ApplyExperiment(path, dataname, apply_log, new_size, model, batch_frac, lear
     learning_rate : float
               learning rate 
     epoch : int
-                              choose from None (early_stop), or any interger, if choose None, early_stop_num will take effect
+            choose from None (early_stop), or any interger, if choose None, early_stop_num will take effect
     early_stop_num : int
-            if loss does not improve for early_stop_num epochs, the training will stop. Default value is 30. Only take effect when epoch == "early_stop"
+            if loss does not improve for early_stop_num epochs, the training will stop. Default value is 30. Only take effect when epoch == None.
     off_aug : string (AE_head or Gaussian_head or None) 
                       choose from AE_head, Gaussian_head, None. if choose AE_head, AE_head_num will take effect. If choose Gaussian_head, Gaussian_head_num will take effect. If choose None, no offline augmentation
     AE_head_num : int
@@ -591,13 +593,12 @@ def ApplyExperiment(path, dataname, apply_log, new_size, model, batch_frac, lear
         print("wait for other models")
 
 #%% Define transfer learing 
-def TransferExperiment(pilot_size, fromname, toname, fromsize, model, new_size=500, apply_log=True, epoch=None, batch_frac=0.1, learning_rate=0.0005, off_aug=None):
+def TransferExperiment(pilot_size, fromname, toname, new_size_pre, model, new_size=500, apply_log=True, epoch=None, batch_frac=0.1, learning_rate=0.0005, off_aug=None):
     """
-    This function run transfer learning using VAE or CVAE, or GAN, WGAN, WGANGP, MAF, GLOW, RealNVP 
-    given fromdata, todata, model, batch_size, learning_rate, epoch, off_aug and pre_model
-    and generate new samples with size specified by the users.
-    The fine tuning model training can be pilot experiments or apply experiment
-    Make sure data files for pre_model training and fine tuning model training are in Transfer/
+    This function runs transfer learning using VAE or CVAE, or GAN, WGAN, WGANGP, MAF, GLOW, RealNVP. 
+    The model will be first trained on the pre-training dataset, and then the trained model will be saved, and the fine-tuning dataset will be trained on the save model. 
+    The fine tuning model training can be pilot experiments or apply experiments depending on the input of the pilot_size.  
+    Make sure data files for pre_model training and fine tuning model training are in the folder Transfer/.
 
     Parameters
     ----------
@@ -605,11 +606,11 @@ def TransferExperiment(pilot_size, fromname, toname, fromsize, model, new_size=5
                     if None, the fine tuning model will be apply experiment and new_size will take effect
                     otherwise, the fine tuning model will be trained using pilot experiments
     fromname : string
-                        the dataname for pre_model training 
+                name of the pretraining dataset
     toname : string 
-                            the dataname for fine tuning model training
-    fromsize : int
-                        the sample size of the fromdata
+                name of the fine tuning dataset
+    new_size_pre : int
+                number of generated samples when pre-training the model
     new_size : int
                         if apply experiment, this will be the sample size of generated samples
     apply_log : boolean
@@ -629,7 +630,7 @@ def TransferExperiment(pilot_size, fromname, toname, fromsize, model, new_size=5
     path = "../Transfer/"
     save_model = "../Transfer/"+toname+"_from"+fromname+"_"+model+".pt"
     ApplyExperiment(path = path, dataname = fromname, apply_log = apply_log, 
-                    new_size = [fromsize], model = model , batch_frac = batch_frac, 
+                    new_size = [new_size_pre], model = model , batch_frac = batch_frac, 
                     learning_rate = learning_rate, epoch = epoch, early_stop_num = 30, 
                     off_aug = off_aug, AE_head_num = 2, Gaussian_head_num = 9, 
                     pre_model = None, save_model = save_model)
