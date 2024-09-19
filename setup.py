@@ -12,7 +12,7 @@ print(install_requires)
 
 setup(
     name="syng_bts_imports",
-    version='0.5.6',
+    version='1.0',
     packages=find_packages(),
     include_package_data=True,
     package_data={
