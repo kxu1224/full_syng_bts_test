@@ -21,6 +21,8 @@ setup(
         'syng_bts_imports.Case.BRCASubtype': ['BRCASubtypeSel_test.csv'],
         'syng_bts_imports.Case.BRCASubtype': ['BRCASubtypeSel_train_epoch285_CVAE1-20_generated.csv'],
         'syng_bts_imports.Case.BRCASubtype': ['BRCASubtypeSel_train.csv'],
+        'syng_bts_imports.Transfer': ['BRCA.csv'],
+        'syng_bts_imports.Transfer': ['PRAD.csv'],
     },
     install_requires = install_requires,
     python_requires='>=3.6',
