@@ -24,10 +24,9 @@ import importlib.resources as pkg_resources
 #%% Define pilot experiments functions
 def PilotExperiment(dataname, pilot_size, model, batch_frac, learning_rate, epoch, early_stop_num = 30, off_aug = None, AE_head_num = 2, Gaussian_head_num = 9, pre_model = None):
     r""" 
-        This function trains VAE or CVAE, or GAN, WGAN, WGANGP, MAF, GLOW, RealNVP 
-        with several pilot size given data, model, batch_size, learning_rate, epoch, off_aug and pre_model.
-        For each pilot size, there will be 5 draws.
-        For each draw, the data is augmented to 5 times the original sample size.
+        This function trains VAE or CVAE, or GAN, WGAN, WGANGP, MAF, GLOW, RealNVP with several pilot sizes given data, model, batch_size, learning_rate, epoch, off_aug and pre_model. 
+        For each pilot size, there will be 5 random draws from the original dataset. 
+        For each draw, the pilot data is served as the input to the model training, and the generated data has sample size equal to 5 times the original sample size.
 
         Parameters
         ----------
@@ -44,7 +43,7 @@ def PilotExperiment(dataname, pilot_size, model, batch_frac, learning_rate, epoc
         epoch : int
                                 choose from None (early_stop), or any integer, if choose None, early_stop_num will take effect
         early_stop_num : int
-              if loss does not improve for early_stop_num epochs, the training will stop. Default value is 30. Only take effect when epoch == "early_stop"
+              if loss does not improve for early_stop_num epochs, the training will stop. Default value is 30. Only take effect when epoch == “None”
         off_aug : string (AE_head or Gaussian_head or None)
                             choose from AE_head, Gaussian_head, None. if choose AE_head, AE_head_num will take effect. If choose Gaussian_head, Gaussian_head_num will take effect. If choose None, no offline augmentation
         AE_head_num : int
