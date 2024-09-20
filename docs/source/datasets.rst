@@ -1,7 +1,7 @@
 Example Datasets
 =====
 
-We utilized miRNA-seq datasets from three TCGA studies:
+We utilized miRNA-seq datasets from three `TCGA studies <https://www.cancer.gov/tcga>`_:
 Breast Invasive Carcinoma (BRCA), Prostate Adenocarcinoma (PRAD), Skin Cutaneous Melanoma (SKCM)
 
 Within this package, there are two main folders of datasets. One set includes the datasets that can be used as a case study. These are the BRCA dataset with cancer subtypes (ILC, IDC) as group labels and marker filtering based on importance score from a random forest classification. 

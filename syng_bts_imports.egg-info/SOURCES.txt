@@ -1,4 +1,5 @@
 README.md
+README.rst
 setup.py
 syng_bts_imports/__init__.py
 syng_bts_imports.egg-info/PKG-INFO
@@ -6,14 +7,14 @@ syng_bts_imports.egg-info/SOURCES.txt
 syng_bts_imports.egg-info/dependency_links.txt
 syng_bts_imports.egg-info/requires.txt
 syng_bts_imports.egg-info/top_level.txt
-syng_bts_imports/Case/BRCASubtypeSel_test.csv
-syng_bts_imports/Case/BRCASubtypeSel_train_epoch285_CVAE1-20_generated.csv
 syng_bts_imports/Case/__init__.py
 syng_bts_imports/Case/BRCASubtype/BRCASubtypeSel.csv
+syng_bts_imports/Case/BRCASubtype/BRCASubtypeSel_train.csv
 syng_bts_imports/Case/BRCASubtype/__init__.py
 syng_bts_imports/Case/brcaSubtype/__init__.py
 syng_bts_imports/RealData/SKCMPositive_4.csv
 syng_bts_imports/RealData/__init__.py
+syng_bts_imports/Transfer/PRAD.csv
 syng_bts_imports/Transfer/__init__.py
 syng_bts_imports/case/__init__.py
 syng_bts_imports/case/brcaSubtype/__init__.py
